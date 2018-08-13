@@ -31,7 +31,7 @@
                 android:layout_weight="12"
                 android:text="FRUITS"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                />
 
             <ImageView
                 android:layout_width="50dp"
@@ -66,7 +66,7 @@
                 android:layout_weight="12"
                 android:text="GROCERY STAPLES"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                />
 
             <ImageView
                 android:layout_width="50dp"
@@ -101,7 +101,7 @@
                 android:layout_weight="12"
                 android:text="BEVERAGES"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                 />
 
             <ImageView
                 android:layout_width="50dp"
@@ -136,7 +136,7 @@
                 android:layout_weight="12"
                 android:text="BISCUIT,SNACKS CHOCLAETS"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                 />
 
             <ImageView
                 android:layout_width="50dp"
@@ -171,7 +171,7 @@
                 android:layout_weight="12"
                 android:text="PACKED FOOD"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                 />
 
             <ImageView
                 android:layout_width="50dp"
@@ -206,7 +206,7 @@
                 android:layout_weight="12"
                 android:text="PERSONAL CARE"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                 />
 
             <ImageView
                 android:layout_width="50dp"
@@ -241,7 +241,7 @@
                 android:layout_weight="12"
                 android:text="HOME HYGIENS NEEDS"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                 />
 
             <ImageView
                 android:layout_width="50dp"
@@ -276,7 +276,7 @@
                 android:layout_weight="12"
                 android:text="BEARD,EGGS DAIRY"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                 />
 
             <ImageView
                 android:layout_width="50dp"
@@ -311,7 +311,7 @@
                 android:layout_weight="12"
                 android:text="FRUITS"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                />
 
             <ImageView
                 android:layout_width="50dp"
@@ -321,12 +321,7 @@
                 android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="5dp"
-            android:background="@color/hint"
-            />
+
     </LinearLayout>
 
 </ScrollView>

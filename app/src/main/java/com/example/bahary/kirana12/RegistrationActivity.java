@@ -16,5 +16,7 @@ public class RegistrationActivity extends AppCompatActivity {
         //View view = getLayoutInflater().inflate( R.layout.action_bar,null);
         TextView bar_title=findViewById(R.id.toolbar_title);
         bar_title.setText("Sign up");
+
+
     }
 }

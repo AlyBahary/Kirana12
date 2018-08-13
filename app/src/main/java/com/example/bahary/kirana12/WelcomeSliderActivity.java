@@ -1,16 +1,13 @@
 package com.example.bahary.kirana12;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.bahary.kirana12.Utils.Constants;
+import com.example.bahary.kirana12.WelcomeFragments.FirstSliderFragment;
+import com.example.bahary.kirana12.WelcomeFragments.LastSlider;
+import com.example.bahary.kirana12.WelcomeFragments.SecondSliderFragment;
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
-import com.orhanobut.hawk.Hawk;
 
 public class WelcomeSliderActivity extends AppIntro {
 

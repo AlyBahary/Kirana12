@@ -11,6 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -22,10 +26,43 @@ import com.example.bahary.kirana12.HomeFragments.SupportFragment;
 public class Home1Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public AHBottomNavigation bottomNavigation;
+    public AHBottomNavigationItem item2;
+    public LinearLayout searchbarhome1;
+    public ImageView homebar1item1,homebar1item2,homebar1item3,homebar1item4;
+    public ImageView homebar2item1,homebar2item2;
+    public ImageView homesection3button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home1);
+        //********Declearaton****************
+        searchbarhome1=findViewById(R.id.searchbarhome);
+        homebar1item1=findViewById(R.id.homebar1item1);
+        homebar1item2=findViewById(R.id.homebar1item2);
+        homebar1item3=findViewById(R.id.homebar1item3);
+        homebar1item4=findViewById(R.id.homebar1item4);
+        homebar2item1=findViewById(R.id.homebar2item1);
+        homebar2item2=findViewById(R.id.homebar2item2);
+
+        homesection3button=findViewById(R.id.homesection3button);
+        //************************
+/*
+        searchbarhome1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomNavigation.setCurrentItem(2);
+            }
+        });
+*/
+/*
+        homesection3button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomNavigation.setCurrentItem(1);
+            }
+        });
+*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -43,10 +80,10 @@ public class Home1Activity extends AppCompatActivity
         fragmentTransaction.replace(R.id.FramContainer, homeFragment);
         fragmentTransaction.commit();
         //**************
-        AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
+          bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
         // Create items
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("Home", R.drawable.ic_email_black_24dp, R.color.hint);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("Categories", R.drawable.ic_apps_black_24dp, R.color.hint);
+         item2 = new AHBottomNavigationItem("Categories", R.drawable.ic_apps_black_24dp, R.color.hint);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem("Search", R.drawable.ic_loupe, R.color.hint);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem("Support", R.drawable.ic_headset_mic_black_24dp, R.color.hint);
 
@@ -138,17 +175,30 @@ public class Home1Activity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.shop_By_Categorie) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            bottomNavigation.setCurrentItem(1);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.Shopping_Cart) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.Account) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.Notification) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.Order) {
+
+        } else if (id == R.id.Adress_Book) {
+
+        }else if (id == R.id.Service_Area) {
+
+        }else if (id == R.id.share) {
+
+        }else if (id == R.id.RateUs) {
+
+        }else if (id == R.id.Support) {
+            bottomNavigation.setCurrentItem(3);
+
+        }else if (id == R.id.Out) {
 
         }
 

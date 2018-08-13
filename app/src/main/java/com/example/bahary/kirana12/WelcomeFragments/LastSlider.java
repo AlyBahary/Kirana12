@@ -1,4 +1,4 @@
-package com.example.bahary.kirana12;
+package com.example.bahary.kirana12.WelcomeFragments;
 
 
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.bahary.kirana12.LoginActivity;
+import com.example.bahary.kirana12.R;
 import com.example.bahary.kirana12.Utils.Constants;
 import com.orhanobut.hawk.Hawk;
 
