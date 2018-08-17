@@ -15,6 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/fragCatg1"
             android:orientation="horizontal">
 
             <ImageView
@@ -50,7 +51,9 @@
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+          android:id="@+id/fragCatg2"
+
+          android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="100dp"
@@ -85,7 +88,9 @@
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+          android:id="@+id/fragCatg3"
+
+          android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="100dp"
@@ -120,7 +125,9 @@
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+          android:id="@+id/fragCatg4"
+
+          android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="100dp"
@@ -155,7 +162,9 @@
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+          android:id="@+id/fragCatg5"
+
+          android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="100dp"
@@ -190,7 +199,9 @@
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+          android:id="@+id/fragCatg6"
+
+          android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="100dp"
@@ -225,7 +236,9 @@
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+          android:id="@+id/fragCatg7"
+
+          android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="100dp"
@@ -260,7 +273,9 @@
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+          android:id="@+id/fragCatg8"
+
+          android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="100dp"
@@ -295,7 +310,10 @@
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+          android:layout_marginBottom="30dp"
+          android:id="@+id/fragCatg9"
+
+          android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="100dp"

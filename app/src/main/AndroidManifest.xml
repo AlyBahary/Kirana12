@@ -28,6 +28,16 @@
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity android:name=".NavItemsActivities.AboutUsActivity" />
+        <activity android:name=".categoryItemsActivties" />
+        <activity android:name=".ItemDescriptionActivity" />
+        <activity android:name=".MainCategoryActivity" />
+        <activity android:name=".NavItemsActivities.MyAccountActivity" />
+        <activity android:name=".NavItemsActivities.NotificationActivity" />
+        <activity android:name=".NavItemsActivities.ServiceAreaActivity" />
+        <activity android:name=".NavItemsActivities.AdressBook" />
+        <activity android:name=".NavItemsActivities.MyOrderActivity" />
+        <activity android:name=".NavItemsActivities.ShoppingCartActivity"></activity>
     </application>
 
 </manifest>

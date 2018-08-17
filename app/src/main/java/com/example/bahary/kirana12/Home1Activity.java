@@ -1,5 +1,6 @@
 package com.example.bahary.kirana12;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -22,6 +23,13 @@ import com.example.bahary.kirana12.HomeFragments.CategoriesFragment;
 import com.example.bahary.kirana12.HomeFragments.HomeFragment;
 import com.example.bahary.kirana12.HomeFragments.SearchFragment;
 import com.example.bahary.kirana12.HomeFragments.SupportFragment;
+import com.example.bahary.kirana12.NavItemsActivities.AboutUsActivity;
+import com.example.bahary.kirana12.NavItemsActivities.AdressBook;
+import com.example.bahary.kirana12.NavItemsActivities.MyAccountActivity;
+import com.example.bahary.kirana12.NavItemsActivities.MyOrderActivity;
+import com.example.bahary.kirana12.NavItemsActivities.NotificationActivity;
+import com.example.bahary.kirana12.NavItemsActivities.ServiceAreaActivity;
+import com.example.bahary.kirana12.NavItemsActivities.ShoppingCartActivity;
 
 public class Home1Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -92,6 +100,7 @@ public class Home1Activity extends AppCompatActivity
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item3);
         bottomNavigation.addItem(item4);
+        
 
 // Set background color
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FEFEFE"));
@@ -180,17 +189,29 @@ public class Home1Activity extends AppCompatActivity
             bottomNavigation.setCurrentItem(1);
 
         } else if (id == R.id.Shopping_Cart) {
+            Intent intent=new Intent(getApplicationContext(), ShoppingCartActivity.class);
+            startActivity(intent);
+
 
         } else if (id == R.id.Account) {
+            Intent intent=new Intent(getApplicationContext(), MyAccountActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.Notification) {
 
+            Intent intent=new Intent(getApplicationContext(), NotificationActivity.class);
+            startActivity(intent);
         } else if (id == R.id.Order) {
 
+            Intent intent=new Intent(getApplicationContext(), MyOrderActivity.class);
+            startActivity(intent);
         } else if (id == R.id.Adress_Book) {
+            Intent intent=new Intent(getApplicationContext(), AdressBook.class);
+            startActivity(intent);
 
         }else if (id == R.id.Service_Area) {
-
+            Intent intent=new Intent(getApplicationContext(), ServiceAreaActivity.class);
+            startActivity(intent);
         }else if (id == R.id.share) {
 
         }else if (id == R.id.RateUs) {
@@ -198,7 +219,15 @@ public class Home1Activity extends AppCompatActivity
         }else if (id == R.id.Support) {
             bottomNavigation.setCurrentItem(3);
 
+        }else if (id == R.id.About) {
+            Intent intent=new Intent(getApplicationContext(), AboutUsActivity.class);
+            startActivity(intent);
+
         }else if (id == R.id.Out) {
+            Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+
 
         }
 

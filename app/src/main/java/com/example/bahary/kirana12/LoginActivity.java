@@ -1,12 +1,14 @@
 package com.example.bahary.kirana12;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,22 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
                 startActivity(intent);
+            }
+        });
+        ImageView bar_image=findViewById(R.id.toolbarback);
+        bar_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View parentLayout = findViewById(android.R.id.content);
+                Snackbar.make(parentLayout, "Are you sure you want to exit ?", Snackbar.LENGTH_LONG)
+                        .setAction("Exit", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                            }
+                        })
+                        .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))
+                        .show();
             }
         });
         log_in.setOnClickListener(new View.OnClickListener() {
