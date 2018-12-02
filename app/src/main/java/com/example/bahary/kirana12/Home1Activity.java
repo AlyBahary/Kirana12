@@ -9,6 +9,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +26,7 @@ import com.example.bahary.kirana12.HomeFragments.CategoriesFragment;
 import com.example.bahary.kirana12.HomeFragments.HomeFragment;
 import com.example.bahary.kirana12.HomeFragments.SearchFragment;
 import com.example.bahary.kirana12.HomeFragments.SupportFragment;
+import com.example.bahary.kirana12.Models.CategoryModel;
 import com.example.bahary.kirana12.NavItemsActivities.AboutUsActivity;
 import com.example.bahary.kirana12.NavItemsActivities.AdressBook;
 import com.example.bahary.kirana12.NavItemsActivities.MyAccountActivity;
@@ -30,30 +34,32 @@ import com.example.bahary.kirana12.NavItemsActivities.MyOrderActivity;
 import com.example.bahary.kirana12.NavItemsActivities.NotificationActivity;
 import com.example.bahary.kirana12.NavItemsActivities.ServiceAreaActivity;
 import com.example.bahary.kirana12.NavItemsActivities.ShoppingCartActivity;
+import com.example.bahary.kirana12.RecyclerView.CategroiesAdapter;
+
+import java.util.ArrayList;
 
 public class Home1Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public AHBottomNavigation bottomNavigation;
+    public  AHBottomNavigation bottomNavigation;
     public AHBottomNavigationItem item2;
     public LinearLayout searchbarhome1;
-    public ImageView homebar1item1,homebar1item2,homebar1item3,homebar1item4;
-    public ImageView homebar2item1,homebar2item2;
+    public ImageView homebar1item1, homebar1item2, homebar1item3, homebar1item4;
+    public ImageView homebar2item1, homebar2item2;
     public ImageView homesection3button;
+    RecyclerView CategryRV;
+    CategroiesAdapter mCategroiesAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home1);
         //********Declearaton****************
-        searchbarhome1=findViewById(R.id.searchbarhome);
-        homebar1item1=findViewById(R.id.homebar1item1);
-        homebar1item2=findViewById(R.id.homebar1item2);
-        homebar1item3=findViewById(R.id.homebar1item3);
-        homebar1item4=findViewById(R.id.homebar1item4);
-        homebar2item1=findViewById(R.id.homebar2item1);
-        homebar2item2=findViewById(R.id.homebar2item2);
+        searchbarhome1 = findViewById(R.id.searchbarhome);
 
-        homesection3button=findViewById(R.id.homesection3button);
+        homesection3button = findViewById(R.id.homesection3button);
+
         //************************
 /*
         searchbarhome1.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +69,7 @@ public class Home1Activity extends AppCompatActivity
             }
         });
 */
-/*
+/*\
         homesection3button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,17 +87,29 @@ public class Home1Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         final HomeFragment homeFragment = new HomeFragment();
-        final CategoriesFragment categoriesFragment=new CategoriesFragment();
-        final SearchFragment searchFragment=new SearchFragment();
-        final SupportFragment supportFragment=new SupportFragment();
+        homeFragment.setOnSearchBarHomeClicked(new HomeFragment.OnSearchBarHomeClicked() {
+            @Override
+            public void setOnSearchBarHomeClicked(int type) {
+                setCurrentTab();
+            }
+        });
+        homeFragment.setOnCateriesHomeClicked(new HomeFragment.OnCategroiesHomeClicked() {
+            @Override
+            public void setOnCateriesHomeClicked(int type) {
+                setCurrentTabCatgries();
+            }
+        });
+        final CategoriesFragment categoriesFragment = new CategoriesFragment();
+        final SearchFragment searchFragment = new SearchFragment();
+        final SupportFragment supportFragment = new SupportFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.FramContainer, homeFragment);
         fragmentTransaction.commit();
         //**************
-          bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
+        bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
         // Create items
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("Home", R.drawable.ic_email_black_24dp, R.color.hint);
-         item2 = new AHBottomNavigationItem("Categories", R.drawable.ic_apps_black_24dp, R.color.hint);
+        item2 = new AHBottomNavigationItem("Categories", R.drawable.ic_apps_black_24dp, R.color.hint);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem("Search", R.drawable.ic_loupe, R.color.hint);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem("Support", R.drawable.ic_headset_mic_black_24dp, R.color.hint);
 
@@ -100,7 +118,7 @@ public class Home1Activity extends AppCompatActivity
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item3);
         bottomNavigation.addItem(item4);
-        
+
 
 // Set background color
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FEFEFE"));
@@ -189,42 +207,42 @@ public class Home1Activity extends AppCompatActivity
             bottomNavigation.setCurrentItem(1);
 
         } else if (id == R.id.Shopping_Cart) {
-            Intent intent=new Intent(getApplicationContext(), ShoppingCartActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ShoppingCartActivity.class);
             startActivity(intent);
 
 
         } else if (id == R.id.Account) {
-            Intent intent=new Intent(getApplicationContext(), MyAccountActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MyAccountActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.Notification) {
 
-            Intent intent=new Intent(getApplicationContext(), NotificationActivity.class);
+            Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
             startActivity(intent);
         } else if (id == R.id.Order) {
 
-            Intent intent=new Intent(getApplicationContext(), MyOrderActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MyOrderActivity.class);
             startActivity(intent);
         } else if (id == R.id.Adress_Book) {
-            Intent intent=new Intent(getApplicationContext(), AdressBook.class);
+            Intent intent = new Intent(getApplicationContext(), AdressBook.class);
             startActivity(intent);
 
-        }else if (id == R.id.Service_Area) {
-            Intent intent=new Intent(getApplicationContext(), ServiceAreaActivity.class);
+        } else if (id == R.id.Service_Area) {
+            Intent intent = new Intent(getApplicationContext(), ServiceAreaActivity.class);
             startActivity(intent);
-        }else if (id == R.id.share) {
+        } else if (id == R.id.share) {
 
-        }else if (id == R.id.RateUs) {
+        } else if (id == R.id.RateUs) {
 
-        }else if (id == R.id.Support) {
+        } else if (id == R.id.Support) {
             bottomNavigation.setCurrentItem(3);
 
-        }else if (id == R.id.About) {
-            Intent intent=new Intent(getApplicationContext(), AboutUsActivity.class);
+        } else if (id == R.id.About) {
+            Intent intent = new Intent(getApplicationContext(), AboutUsActivity.class);
             startActivity(intent);
 
-        }else if (id == R.id.Out) {
-            Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
+        } else if (id == R.id.Out) {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
             finish();
 
@@ -235,4 +253,12 @@ public class Home1Activity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void setCurrentTab() {
+        Home1Activity.this.bottomNavigation.setCurrentItem(2);
+    }
+
+    public  void setCurrentTabCatgries() {Home1Activity.this.bottomNavigation.setCurrentItem(1);}
+
+
 }

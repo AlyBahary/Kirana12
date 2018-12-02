@@ -18,62 +18,17 @@
         android:orientation="horizontal">
 
         <ScrollView
-            android:layout_width="100dp"
+            android:layout_width="130dp"
             android:layout_height="match_parent">
-
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:id="@+id/Main_Categories_Activity_RV">
 
-                <Button
-                    android:id="@+id/mainCatgButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:background="@drawable/img_slideerrr3" />
+            </android.support.v7.widget.RecyclerView>
 
-                <Button
-                    android:id="@+id/mainCatgButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:background="@drawable/img_slideerrr3" />
 
-                <Button
-                    android:id="@+id/mainCatgButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:background="@drawable/img_slideerrr3" />
 
-                <Button
-                    android:id="@+id/mainCatgButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:background="@drawable/img_slideerrr3" />
-
-                <Button
-                    android:id="@+id/mainCatgButton5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:background="@drawable/img_slideerrr3" />
-
-                <Button
-                    android:id="@+id/mainCatgButton6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:background="@drawable/img_slideerrr3" />
-
-                <Button
-                    android:id="@+id/mainCatgButton7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:background="@drawable/img_slideerrr3" />
-
-                <Button
-                    android:id="@+id/mainCatgButton8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:background="@drawable/img_slideerrr3" />
-            </LinearLayout>
         </ScrollView>
 
         <LinearLayout
@@ -95,10 +50,10 @@
 
                 android:textStyle="bold" />
 
-            <ListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/mainCatglist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></ListView>
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
