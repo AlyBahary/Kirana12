@@ -25,13 +25,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="30dp"
-            android:text="Here will be the New Notification "/>
-        <TextView
+            android:text="Here is no notifications right now "/>
+      <!--  <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="30dp"
             android:text=" New Notification New Notification New Notification New Notification New Notification New Notification New Notification "/>
-        </LinearLayout>
+       --> </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

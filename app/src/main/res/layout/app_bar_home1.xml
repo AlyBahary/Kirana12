@@ -21,42 +21,44 @@
             android:layout_height="?attr/actionBarSize"
             app:elevation="0dp">
 
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <LinearLayout
+                <!--   <ImageView
+                       android:id="@+id/app_bar_home1_image1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentLeft="true"
+                       android:layout_centerVertical="true"
+                       android:padding="5dp"
+                       android:src="@mipmap/ic_launcher" />-->
+
+                <TextView
+                    android:id="@+id/app_bar_home1_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/app_bar_home1_image1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:src="@mipmap/ic_launcher" />
-
-                    <TextView
-                        android:id="@+id/app_bar_home1_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignRight="@+id/app_bar_home1_image1"
-                        android:gravity="center|left"
-                        android:text="Title"
-                        android:textColor="@color/white" />
-                </LinearLayout>
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/app_bar_home1_image2"
+                    android:id="@+id/app_bar_home1_Shiping"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_margin="10dp"
                     app:srcCompat="@drawable/ic_shopping_cart_white" />
 
-
             </RelativeLayout>
+
+
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>

@@ -12,7 +12,7 @@
         android:id="@+id/app_bar"
         layout="@layout/action_bar" />
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -26,18 +26,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/MR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
                     android:text="MR" />
 
                 <RadioButton
                     android:id="@+id/MS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
                     android:text="MS" />
 
                 <!-- <RadioButton
@@ -127,7 +130,6 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
                     android:drawablePadding="10dp"
-                    android:drawableRight="@drawable/ic_remove_red_eye_black_24dp"
                     android:hint="Password"
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
@@ -161,30 +163,52 @@
                     android:id="@+id/input_Address_Registration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_phone_android_black_24dp"
+                    android:drawableLeft="@drawable/ic_place_black_24dp"
                     android:drawablePadding="10dp"
+                    android:drawableTint="@color/colorPrimary"
                     android:hint="Address"
                     android:inputType="text"
                     android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:id="@+id/input_layout_postal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/input_postal_Registration"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_phone_android_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:hint="postal"
-                    android:inputType="number"
-                    android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_gravity="start"
+                    android:padding="6dp"
+                    android:layout_marginTop="1dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Postal" />
+
+                <com.chaos.view.PinView
+                    android:id="@+id/input_postal_Registration"
+                    style="@style/PinWidget.PinView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:cursorWidth="2dp"
+                    app:hideLineWhenFilled="true"
+                    app:itemCount="6"
+                    app:itemHeight="40dp"
+                    app:itemRadius="4dp"
+                    app:itemWidth="40dp"
+                    app:lineColor="@color/colorPrimary"
+                    app:lineWidth="2dp"
+                    app:viewType="rectangle" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -211,17 +235,26 @@
             </LinearLayout>
 
 
-            <DatePicker
-                android:id="@+id/Birthday"
-                android:layout_width="wrap_content"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_Date"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:endYear="2100"
-                android:orientation="vertical"
-                android:scrollbars="vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
 
-                android:startYear="1900"></DatePicker>
+                <EditText
+                    android:id="@+id/input_Date_Registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:focusableInTouchMode="false"
+                    android:hint="Birthdate"
+                    android:inputType="number"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+
 
             <TextView
 
@@ -230,7 +263,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                android:text="Terms,blaaaaa "
+                android:text="Terms , Condition "
                 android:textColor="@color/hint" />
 
             <Button
@@ -256,12 +289,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
                 android:text="Sign in "
                 android:textColor="@color/colorPrimary"
                 android:textSize="19sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

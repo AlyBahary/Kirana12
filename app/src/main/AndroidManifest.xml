@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
     package="com.example.bahary.kirana12">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -7,10 +9,11 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
+        tools:replace="android:icon"
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
@@ -35,6 +38,7 @@
         <activity android:name=".ItemDescriptionActivity" />
         <activity android:name=".MainCategoryActivity" />
         <activity android:name=".NavItemsActivities.MyAccountActivity" />
+        <activity android:name=".Dialoge.OldOrderDetailsDialoge" />
         <activity android:name=".NavItemsActivities.NotificationActivity" />
         <activity android:name=".NavItemsActivities.ServiceAreaActivity" />
         <activity android:name=".NavItemsActivities.AdressBook" />

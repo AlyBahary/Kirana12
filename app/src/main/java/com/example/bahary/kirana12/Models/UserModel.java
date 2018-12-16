@@ -7,6 +7,9 @@ import com.google.gson.annotations.SerializedName;
 public class UserModel {
 
 
+    @SerializedName("id")
+    @Expose
+    private String UserID;
     @SerializedName("FirstName")
     @Expose
     private String firstName;
@@ -68,6 +71,14 @@ public class UserModel {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(String userID) {
+        UserID = userID;
     }
 
     public String getLastName() {

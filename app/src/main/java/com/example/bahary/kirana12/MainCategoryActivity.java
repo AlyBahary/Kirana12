@@ -1,7 +1,9 @@
 package com.example.bahary.kirana12;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,13 +44,17 @@ public class MainCategoryActivity extends AppCompatActivity {
     RecyclerView listView;
     TextView mainCatgName;
     RecyclerView CategryRV;
-    CategroiesAdapter mCategroiesAdapter,mSubCatrgriesAdapter;
-    ArrayList<CategoryModel> categoryModels,SubSubcatgryModel;
+    CategroiesAdapter mCategroiesAdapter, mSubCatrgriesAdapter;
+    ArrayList<CategoryModel> categoryModels, SubSubcatgryModel;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_category);
+        pd = new ProgressDialog(this);
+        pd.setMessage("Loading..");
+        pd.show();
         //******
 
         categoryModels = new ArrayList<>();
@@ -66,19 +72,18 @@ public class MainCategoryActivity extends AppCompatActivity {
         mCategroiesAdapter = new CategroiesAdapter(categoryModels, getApplicationContext(), "2", new CategroiesAdapter.OnItemClick() {
             @Override
             public void setOnItemClick(int position) {
-                getSubCatgries(categoryModels.get(position).getId()+"");
+                getSubCatgries(categoryModels.get(position).getId() + "");
             }
         });
         CategryRV.setAdapter(mCategroiesAdapter);
         CategryRV.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         /////
         listView = findViewById(R.id.mainCatglist);
-        SubSubcatgryModel.add(new CategoryModel("2","2","2"));
-        mSubCatrgriesAdapter=new CategroiesAdapter(SubSubcatgryModel, getApplicationContext(), "3", new CategroiesAdapter.OnItemClick() {
+        mSubCatrgriesAdapter = new CategroiesAdapter(SubSubcatgryModel, getApplicationContext(), "3", new CategroiesAdapter.OnItemClick() {
             @Override
             public void setOnItemClick(int position) {
-                Intent i=new Intent(getApplicationContext(),SubCatrgriesActivity.class);
-                i.putExtra(Constants.SubCategorieNumb,SubSubcatgryModel.get(position).getId());
+                Intent i = new Intent(getApplicationContext(), SubCatrgriesActivity.class);
+                i.putExtra(Constants.SubCategorieNumb, SubSubcatgryModel.get(position).getId());
                 startActivity(i);
 
 
@@ -92,7 +97,6 @@ public class MainCategoryActivity extends AppCompatActivity {
         //******
         final String falg;
         falg = getIntent().getStringExtra(Constants.CategorieNumb);
-        Toast.makeText(this, "" + falg, Toast.LENGTH_SHORT).show();
         getSubCatgries(falg + "");
         mainCatgName.setText("Sub Categries");
         TextView bar_title = findViewById(R.id.toolbar_title);
@@ -116,11 +120,12 @@ public class MainCategoryActivity extends AppCompatActivity {
                         .create(new Gson())).build();
         Connectors.getSubCategroiesServices getSubCategroiesServices = retrofit.create(Connectors.getSubCategroiesServices.class);
         getSubCategroiesServices.getSubCatries(Catgry + "").enqueue(new Callback<ExampleSubCatgModel>() {
-             @Override
+            @Override
             public void onResponse(Call<ExampleSubCatgModel> call, Response<ExampleSubCatgModel> response) {
+                pd.dismiss();
                 ExampleSubCatgModel exampleCatgModel = response.body();
                 ArrayList<CategoryModel> categoryModels = (ArrayList<CategoryModel>) exampleCatgModel.getSubcategories();
-                Log.i("SUBCATGSize", categoryModels.get(0).getImage()+ "");
+                Log.i("SUBCATGSize", categoryModels.get(0).getImage() + "");
                 SubSubcatgryModel.clear();
                 SubSubcatgryModel.addAll(categoryModels);
                 mSubCatrgriesAdapter.notifyDataSetChanged();
@@ -130,11 +135,19 @@ public class MainCategoryActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ExampleSubCatgModel> call, Throwable t) {
-
+                pd.dismiss();
+                View parentLayout = findViewById(android.R.id.content);
+                Snackbar.make(parentLayout, "Please Check your internet Connection", Snackbar.LENGTH_LONG)
+                        .setAction("CLOSE", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                            }
+                        })
+                        .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))
+                        .show();
             }
         });
     }
-
 
 
 }

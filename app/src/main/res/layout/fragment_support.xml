@@ -15,7 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,37 +36,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="120dp"
-                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
                         android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_headset_mic_black_24dp" />
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_headset_mic_black_24dp"
+                        android:tint="#4e4e4e" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:gravity="start"
+                            android:gravity="center"
                             android:text="Call Us"
-                            android:textSize="25sp" />
+                            android:textSize="20sp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:text="1010101010101"
-                            android:textSize="20sp" />
+                            android:gravity="center"
+                            android:text="7062496666"
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -78,43 +82,45 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:orientation="horizontal">
 
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_mail_outline_black_24dp" />
+                    android:layout_weight="2"
+                    android:src="@drawable/ic_location_on_black_24dp"
+                    android:tint="#4e4e4e" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
+                        android:layout_margin="5dp"
                         android:gravity="center"
-                        android:text="Write to US At"
-                        android:textSize="25sp" />
+                        android:text="Our registered office"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="Mail.Mail@Gmail.com"
-                        android:textSize="20sp" />
+                        android:text="1-i-1, Mahaveer Nagar Extension, Kota-Rajasthan"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
 
@@ -127,8 +133,7 @@
                 android:gravity="center"
                 android:text="We will Get Back to you Prompptly"
                 android:textSize="20dp"
-                android:textStyle="bold"
-                 />
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>

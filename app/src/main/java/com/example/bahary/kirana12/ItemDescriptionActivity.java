@@ -1,9 +1,11 @@
 package com.example.bahary.kirana12;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +46,8 @@ public class ItemDescriptionActivity extends AppCompatActivity {
     ScaleRatingBar scaleRatingBar;
     ItemProductModel productModel;
     SpecificItemExampleModel model;
+    ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,10 @@ public class ItemDescriptionActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         ID = extras.getString(Constants.Item_Desctibtion_ID_Bundle);
         getProductItem(ID);
+        pd = new ProgressDialog(this);
+        pd.setMessage("loading ..");
+        pd.show();
+        pd.setCancelable(false);
         /////////
         DesTitle = findViewById(R.id.itemdesDesTitle);
         SpeciTitle = findViewById(R.id.itemdesSpecialityTitle);
@@ -63,7 +71,7 @@ public class ItemDescriptionActivity extends AppCompatActivity {
         itemdesoldprice = findViewById(R.id.itemdesoldprice);
         itemdesoldprice.setPaintFlags(itemdesoldprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         //
-        scaleRatingBar=findViewById(R.id.simpleRatingBar);
+        scaleRatingBar = findViewById(R.id.simpleRatingBar);
         scaleRatingBar.setClickable(false);
         scaleRatingBar.setClearRatingEnabled(false);
         //
@@ -76,7 +84,7 @@ public class ItemDescriptionActivity extends AppCompatActivity {
         itemdesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConfirmationDialoge cdd = new ConfirmationDialoge(ItemDescriptionActivity.this,productModel);
+                ConfirmationDialoge cdd = new ConfirmationDialoge(ItemDescriptionActivity.this, productModel);
                 cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cdd.show();
 
@@ -152,31 +160,44 @@ public class ItemDescriptionActivity extends AppCompatActivity {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onResponse(Call<SpecificItemExampleModel> call, Response<SpecificItemExampleModel> response) {
-                 model = response.body();
-                productModel=model.getProduct();
-                        Log.d("TTTT", "onResponse: "+model.getProduct().getName()+"------"+model.getProduct().getRating());
-                Des.setText("" + model.getProduct().getFullDescription());
-                Speci.setText("" + model.getProduct().getManufacturer().getName());
-                Hawk.put(Constants.Specific_Item_Model, model);
-                if (model.getProduct().getStockAvailable()) {
-                    itemdescunit.setVisibility(View.GONE);
+                model = response.body();
+                productModel = model.getProduct();
+                if (model.getProduct() != null) {
+                    pd.dismiss();
+                    Log.d("TTTT", "onResponse: " + model.getProduct().getName() + "------" + model.getProduct().getRating());
+                    Des.setText("" + model.getProduct().getFullDescription());
+                    Speci.setText("" + model.getProduct().getManufacturer().getName());
+                    Hawk.put(Constants.Specific_Item_Model, model);
+                    if (model.getProduct().getStockAvailable()) {
+                        itemdescunit.setVisibility(View.GONE);
 
+                    } else {
+                        itemdescunit.setVisibility(View.VISIBLE);
+                        itemdescunit.setText("Out of Stock");
+                        itemdescunit.setTextColor(android.R.color.holo_red_light);
+                    }
+                    scaleRatingBar.setRating(Float.parseFloat(model.getProduct().getRating()));
+                    itemdesName.setText(model.getProduct().getName());
+                    itemdesnewprice.setText(model.getProduct().getPrice());
+                    itemdesoldprice.setText(model.getProduct().getOldPrice());
+                    setSliderViews(model.getProduct().getImages());
                 } else {
-                    itemdescunit.setVisibility(View.VISIBLE);
-                    itemdescunit.setText("Out of Stock");
-                    itemdescunit.setTextColor(android.R.color.holo_red_light);
-                }
-                scaleRatingBar.setRating(Float.parseFloat(model.getProduct().getRating()));
-                itemdesName.setText(model.getProduct().getName());
-                itemdesnewprice.setText(model.getProduct().getPrice());
-                itemdesoldprice.setText(model.getProduct().getOldPrice());
-                setSliderViews(model.getProduct().getImages());
 
+                }
             }
 
             @Override
             public void onFailure(Call<SpecificItemExampleModel> call, Throwable t) {
-
+                pd.dismiss();
+                View parentLayout = findViewById(android.R.id.content);
+                Snackbar.make(parentLayout, "Please Check your internet Connection", Snackbar.LENGTH_LONG)
+                        .setAction("CLOSE", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                            }
+                        })
+                        .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))
+                        .show();
             }
         });
     }

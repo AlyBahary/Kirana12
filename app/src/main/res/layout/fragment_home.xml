@@ -70,13 +70,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="200dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/homesection3button"
-                android:layout_width="120dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="center"
                 android:background="@color/white"
                 app:srcCompat="@drawable/ic_apps_pri_color_24dp" />
             <!--Categries List Start-->
@@ -95,11 +96,12 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Awesome Offers"
+            android:text="manufactories"
             android:textColor="#000"
             android:textSize="24sp"
             android:textStyle="bold" />
 
+<!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,8 +123,8 @@
                     android:textColor="@color/white"
                     android:textSize="15dp"
                     android:textStyle="bold" />
-                <!--countDown Here-->
-<!---->
+                &lt;!&ndash;countDown Here&ndash;&gt;
+&lt;!&ndash;&ndash;&gt;
             </LinearLayout>
 
             <LinearLayout
@@ -145,6 +147,7 @@
                     android:textColor="@color/colorPrimary" />
             </LinearLayout>
         </LinearLayout>
+-->
 
         <LinearLayout
             android:layout_width="wrap_content"

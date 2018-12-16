@@ -1,7 +1,9 @@
 package com.example.bahary.kirana12;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -23,6 +25,7 @@ import com.example.bahary.kirana12.RecyclerView.FirstImagesAdapter;
 import com.example.bahary.kirana12.Utils.Connectors;
 import com.example.bahary.kirana12.Utils.Constants;
 import com.google.gson.Gson;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
 
@@ -39,13 +42,17 @@ public class categoryItemsActivties extends AppCompatActivity {
     TextView bar_title;
     ImageView toolbarback;
     String id, type;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_items_activties);
+        pd = new ProgressDialog(this);
+        pd.setMessage("loading..");
+        pd.show();
         bar_title = findViewById(R.id.toolbar_title);
-        bar_title.setText("Category1");
+        bar_title.setText("");
         toolbarback = findViewById(R.id.toolbarback);
         toolbarback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +66,12 @@ public class categoryItemsActivties extends AppCompatActivity {
 
         mitemCategryItemRV = findViewById(R.id.CategoryRV);
         mCategryItemsModels = new ArrayList<>();
-        getProductItems(id+"" ,type+"");
-        mfirstImagesAdapterm = new FirstImagesAdapter(this,getApplicationContext(), mCategryItemsModels, 1, new FirstImagesAdapter.OnItemClick() {
+        getProductItems(id + "", type + "");
+        mfirstImagesAdapterm = new FirstImagesAdapter(this, getApplicationContext(), mCategryItemsModels, 1, new FirstImagesAdapter.OnItemClick() {
             @Override
             public void setOnItemClick(int position) {
-                Intent intent=new Intent(getApplicationContext(),ItemDescriptionActivity.class);
-                intent.putExtra("Item_Desctibtion_ID_Bundle",mCategryItemsModels.get(position).getId());
+                Intent intent = new Intent(getApplicationContext(), ItemDescriptionActivity.class);
+                intent.putExtra("Item_Desctibtion_ID_Bundle", mCategryItemsModels.get(position).getId());
                 startActivity(intent);
 
             }
@@ -81,17 +88,34 @@ public class categoryItemsActivties extends AppCompatActivity {
                         .create(new Gson())).build();
         Connectors.getProductsServices getProductsServices = retrofit.create(Connectors.getProductsServices.class);
         if (type.equals("MANUFACT")) {
+            bar_title.setText("" + Hawk.get(Constants.Name_name));
+
             getProductsServices.getProductsByManufac(id + "").enqueue(new Callback<ExampleProductsModel>() {
                 @Override
                 public void onResponse(Call<ExampleProductsModel> call, Response<ExampleProductsModel> response) {
+                    pd.dismiss();
+
                     ExampleProductsModel exampleProductsModel = response.body();
                     ArrayList<ProductsModel> productsModels = new ArrayList<>();
                     if (exampleProductsModel != null) {
                         productsModels = exampleProductsModel.getProducts();
-                    }
-                    Log.d("Response_products", "onResponse: " + productsModels.size() + productsModels.get(0).getImage());
 
-                    categoryItemsActivties.this.mCategryItemsModels.addAll(productsModels);
+//                        Log.d("Response_products", "onResponse: " + productsModels.size() + productsModels.get(0).getImage());
+
+                        categoryItemsActivties.this.mCategryItemsModels.addAll(productsModels);
+                    }
+                    else{
+                        View parentLayout = categoryItemsActivties.this.findViewById(android.R.id.content);
+                        Snackbar.make(parentLayout, "There is no items in this Category", Snackbar.LENGTH_LONG)
+                                .setAction("CLOSE", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                    }
+                                })
+                                .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))
+                                .show();
+
+                    }
                     mfirstImagesAdapterm.notifyDataSetChanged();
 
 
@@ -99,22 +123,36 @@ public class categoryItemsActivties extends AppCompatActivity {
 
                 @Override
                 public void onFailure(@NonNull Call<ExampleProductsModel> call, Throwable t) {
+                    pd.dismiss();
+
 
                 }
             });
-        }
-        else if(type.equals("SUBCAT")){
-            getProductsServices.getProductsBySubCat(id+"").enqueue(new Callback<ExampleProductsModel>() {
+        } else if (type.equals("SUBCAT")) {
+            bar_title.setText("" + Hawk.get(Constants.Name_name));
+            getProductsServices.getProductsBySubCat(id + "").enqueue(new Callback<ExampleProductsModel>() {
                 @Override
                 public void onResponse(@NonNull Call<ExampleProductsModel> call, @NonNull Response<ExampleProductsModel> response) {
+                    pd.dismiss();
+
                     ExampleProductsModel exampleProductsModel = response.body();
                     ArrayList<ProductsModel> productsModels = new ArrayList<>();
                     if (exampleProductsModel != null) {
                         productsModels = exampleProductsModel.getProducts();
+                        categoryItemsActivties.this.mCategryItemsModels.addAll(productsModels);
                     }
-                    Log.d("Response_products", "onResponse: " + productsModels.size() + productsModels.get(0).getImage());
+                    else{
+                        View parentLayout = categoryItemsActivties.this.findViewById(android.R.id.content);
+                        Snackbar.make(parentLayout, "There is no items in this Category", Snackbar.LENGTH_LONG)
+                                .setAction("CLOSE", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                    }
+                                })
+                                .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))
+                                .show();
 
-                    categoryItemsActivties.this.mCategryItemsModels.addAll(productsModels);
+                    }
                     mfirstImagesAdapterm.notifyDataSetChanged();
 
 
@@ -122,13 +160,24 @@ public class categoryItemsActivties extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<ExampleProductsModel> call, Throwable t) {
+                    pd.dismiss();
+                    View parentLayout = categoryItemsActivties.this.findViewById(android.R.id.content);
+                    Snackbar.make(parentLayout, "Please Check your internet Connection", Snackbar.LENGTH_LONG)
+                            .setAction("CLOSE", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            })
+                            .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))
+                            .show();
+
 
                 }
             });
         }
 
-        }
     }
+}
 
 
 

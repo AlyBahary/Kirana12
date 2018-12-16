@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.bahary.kirana12.Home1Activity;
 import com.example.bahary.kirana12.ItemDescriptionActivity;
@@ -92,6 +93,8 @@ public class HomeFragment extends Fragment {
 
         ////////////////////////
 
+        ////
+
 
         mitemHomeItemRV = view.findViewById(R.id.home_items);
         mitemHomeItemRV1 = view.findViewById(R.id.home_items1);
@@ -159,6 +162,7 @@ public class HomeFragment extends Fragment {
                 Intent i = new Intent(getContext(), categoryItemsActivties.class);
                 i.putExtra(Constants.Item_ID_Bundle, mhomeManufactor.get(position).getId() + "");
                 i.putExtra(Constants.Item_Type_Bundle, "MANUFACT");
+                Hawk.put(Constants.Name_name,mhomeManufactor.get(position).getName());
                 startActivity(i);
             }
         });
@@ -331,25 +335,9 @@ public class HomeFragment extends Fragment {
             //sliderView.setImageUrl(sliderViewsArraylist.get(i));
 
             if (i == i) {
-                sliderView.setImageUrl(sliderViewsArraylist.get(i).replaceFirst("s", ""));
+                sliderView.setImageUrl(sliderViewsArraylist.get(i).replaceFirst("", ""));
             }
-           /* switch (i) {
-                case 0:
-                    sliderView.setImageDrawable(R.drawable.lemon1);
-                    break;
-                case 1:
-                    sliderView.setImageDrawable(R.drawable.lemon1);
-                    break;
-                case 2:
-                    sliderView.setImageDrawable(R.drawable.lemon1);
-
-                    break;
-                case 3:
-                    sliderView.setImageDrawable(R.drawable.lemon1);
-                    break;
-            }
-*/
-            sliderView.setImageScaleType(ImageView.ScaleType.FIT_XY);
+                 sliderView.setImageScaleType(ImageView.ScaleType.FIT_XY);
 
 
             //at last add this view in your layout :

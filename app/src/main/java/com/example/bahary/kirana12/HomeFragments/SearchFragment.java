@@ -28,6 +28,8 @@ import com.example.bahary.kirana12.Utils.Constants;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +47,7 @@ public class SearchFragment extends Fragment {
     TextView CantFind;
     EditText SearchArea;
     ProgressDialog pd;
+
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -57,7 +60,7 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
 
-        SearchArea=view.findViewById(R.id.SearchArea);
+        SearchArea = view.findViewById(R.id.SearchArea);
         SearchArea.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -69,23 +72,50 @@ public class SearchFragment extends Fragment {
 
             }
 
+            private Timer timer = new Timer();
+            private final long DELAY = 1000; // milliseconds
+
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(final Editable s) {
                 pd = new ProgressDialog(getActivity());
                 pd.setMessage("Searching..");
-                //pd.show();
-                getItemsBY(s.toString());
+
+                timer.cancel();
+                timer = new Timer();
+                if (s.toString().equals("")) {
+                } else {
+                    timer.schedule(
+                            new TimerTask() {
+                                @Override
+                                public void run() {
+                                    // TODO: do what you need here (refresh list)
+                                    getActivity().runOnUiThread(new Runnable() {
+
+                                        public void run() {
+
+                                            getItemsBY(s.toString());
+                                            pd.show();
+
+                                        }
+                                    });
+                                }
+
+
+                            },
+                            DELAY
+                    );
+                }
                 CantFind.setVisibility(View.GONE);
 
 
             }
 
         });
-        CantFind=view.findViewById(R.id.CantFind);
+        CantFind = view.findViewById(R.id.CantFind);
         CantFind.setVisibility(View.GONE);
         mitemHomeItemRV = view.findViewById(R.id.Search_items);
         mSearchProduct = new ArrayList<>();
-        mFirstImagesAdapter = new FirstImagesAdapter(getActivity(),getContext(), mSearchProduct, 0, new FirstImagesAdapter.OnItemClick() {
+        mFirstImagesAdapter = new FirstImagesAdapter(getActivity(), getContext(), mSearchProduct, 0, new FirstImagesAdapter.OnItemClick() {
             @Override
             public void setOnItemClick(int position) {
                 Intent intent = new Intent(getContext(), ItemDescriptionActivity.class);
@@ -95,7 +125,7 @@ public class SearchFragment extends Fragment {
             }
         });
         mitemHomeItemRV.setAdapter(mFirstImagesAdapter);
-        mitemHomeItemRV.setLayoutManager(new GridLayoutManager(getContext(),2));
+        mitemHomeItemRV.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
 
         return view;
@@ -116,8 +146,10 @@ public class SearchFragment extends Fragment {
                 ArrayList<ProductsModel> productsModels = new ArrayList<>();
                 productsModels = exampleProductsModel.getProducts();
                 if (productsModels.size() < 1) {
+                    SearchFragment.this.mSearchProduct.clear();
                     CantFind.setVisibility(View.VISIBLE);
                 } else {
+                    SearchFragment.this.mSearchProduct.clear();
                     SearchFragment.this.mSearchProduct.addAll(productsModels);
                     mFirstImagesAdapter.notifyDataSetChanged();
                 }
@@ -125,6 +157,8 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ExampleProductsModel> call, Throwable t) {
+                pd.dismiss();
+
 
             }
         });

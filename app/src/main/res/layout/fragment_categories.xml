@@ -15,7 +15,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/frgmen_catgry_RV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

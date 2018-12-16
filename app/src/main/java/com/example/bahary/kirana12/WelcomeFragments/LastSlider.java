@@ -8,10 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.bahary.kirana12.LoginActivity;
 import com.example.bahary.kirana12.R;
+import com.example.bahary.kirana12.RegistrationActivity;
 import com.example.bahary.kirana12.Utils.Constants;
 import com.orhanobut.hawk.Hawk;
 
@@ -24,13 +26,23 @@ public class LastSlider extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.slider3, container, false);
-        TextView signin = view.findViewById(R.id.slidersignin);
+        Button signin = view.findViewById(R.id.slidersignin);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getContext(),LoginActivity.class);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+        Button signup=view.findViewById(R.id.slidersignup);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),RegistrationActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+
             }
         });
         return view;

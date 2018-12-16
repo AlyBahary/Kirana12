@@ -25,10 +25,10 @@
             android:id="@+id/Order"
             android:icon="@drawable/ic_menu_share"
             android:title="My Order" />
-        <item
+       <!-- <item
             android:id="@+id/Adress_Book"
-            android:icon="@drawable/ic_menu_send"
-            android:title="My Address Book" />
+            android:icon="@drawable/ic_place_black_24dp"
+            android:title="My Address Book" />-->
         <item
             android:id="@+id/Service_Area"
             android:icon="@drawable/ic_place_black_24dp"
