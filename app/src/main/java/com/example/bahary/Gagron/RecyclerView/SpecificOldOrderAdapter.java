@@ -39,11 +39,14 @@ public class SpecificOldOrderAdapter extends RecyclerView.Adapter<SpecificOldOrd
     public void onBindViewHolder(@NonNull SpecificOldOrderAdapter.ViewHolder holder, int position) {
         final Product ordermodel = ordermodels.get(position);
 
-        holder.total.setText(ordermodel.getTotalPrice() + " ₹");
+       /* DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        float twoDigitsF = Float.valueOf(decimalFormat.format(f));
+       */
+       holder.total.setText(ordermodel.getTotalPrice().substring(0,ordermodel.getTotalPrice().length()-2) + " ₹");
         holder.Description.setText(ordermodel.getName());
         holder.Quantity.setText(ordermodel.getQuantity());
         // holder.oldprice.setVisibility(View.GONE);
-        holder.newprice.setText(ordermodel.getUnitPrice() + " ₹");
+        holder.newprice.setText(ordermodel.getUnitPrice().substring(0,ordermodel.getUnitPrice().length()-2) + " ₹");
         // holder.Img.setVisibility(View.GONE);
         holder.Img.setVisibility(View.GONE);
         holder.Add.setVisibility(View.GONE);

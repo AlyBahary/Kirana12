@@ -172,7 +172,6 @@ public class HomeFragment extends Fragment {
         mfirstImagesAdapterm1 = new FirstImagesAdapter(getActivity(),getContext(), mFeaturedProduct, 0, new FirstImagesAdapter.OnItemClick() {
             @Override
             public void setOnItemClick(int position) {
-                Toast.makeText(getContext(), "tessst", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), ItemDescriptionActivity.class);
                 intent.putExtra(Constants.Item_Desctibtion_ID_Bundle, mFeaturedProduct.get(position).getId());
                 getActivity().startActivity(intent);
@@ -185,7 +184,6 @@ public class HomeFragment extends Fragment {
         mfirstImagesAdapterm2 = new FirstImagesAdapter(getActivity(),getContext(), mBestSellProduct, 0, new FirstImagesAdapter.OnItemClick() {
             @Override
             public void setOnItemClick(int position) {
-                Toast.makeText(getContext(), "tessst", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), ItemDescriptionActivity.class);
                 intent.putExtra(Constants.Item_Desctibtion_ID_Bundle, mBestSellProduct.get(position).getId());
                 getActivity().startActivity(intent);

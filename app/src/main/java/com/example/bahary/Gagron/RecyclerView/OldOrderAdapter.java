@@ -40,7 +40,7 @@ public class OldOrderAdapter extends RecyclerView.Adapter<OldOrderAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         OldOrderModel oldOrderModel = ordermodels.get(position);
 
-        holder.total.setText(oldOrderModel.getOrderTotal()+" ₹");
+        holder.total.setText(oldOrderModel.getOrderTotal().substring(0,oldOrderModel.getOrderTotal().length()-2)+" ₹");
         if (oldOrderModel.getOrderStatus().equals("10"))
             holder.newprice.setText("Pending");
         else{

@@ -85,14 +85,14 @@ public class FirstImagesAdapter extends RecyclerView.Adapter<FirstImagesAdapter.
         if (N.getOldPrice() == null) {
             holder.oldprice.setVisibility(View.GONE);
         } else {
-            holder.oldprice.setText(N.getOldPrice() + "₹");
+            holder.oldprice.setText(N.getOldPrice().substring(0,N.getOldPrice().length()-2) + "₹");
             holder.oldprice.setPaintFlags(holder.oldprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
         /////
         if (N.getPrice() == null) {
             holder.newprice.setVisibility(View.GONE);
         } else {
-            holder.newprice.setText(N.getPrice() + "₹");
+            holder.newprice.setText(N.getPrice().substring(0,N.getPrice().length()-2) + "₹");
         }
         /////
         holder.Add.setOnClickListener(new View.OnClickListener() {

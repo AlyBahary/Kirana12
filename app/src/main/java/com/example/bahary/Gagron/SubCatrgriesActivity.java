@@ -87,6 +87,14 @@ public class SubCatrgriesActivity extends AppCompatActivity {
                 ArrayList<CategoryModel> categoryModels1 = null;
                 if (exampleCatgModel != null) {
                     categoryModels1 = (ArrayList<CategoryModel>) exampleCatgModel.getSubcategories();
+                    if(exampleCatgModel.getSubcategories().isEmpty()||exampleCatgModel.getSubcategories()==null){
+
+                        Intent intent=new Intent(getApplicationContext(),categoryItemsActivties.class);
+                        finish();
+                        intent.putExtra(Constants.Item_Type_Bundle,"SUBCAT");
+                        intent.putExtra(Constants.Item_ID_Bundle,Catgry+"");
+                        startActivity(intent);
+                    }
                 }
                 Log.i("SUBCATGSize", categoryModels1.size()+"");
 

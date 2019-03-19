@@ -44,6 +44,7 @@ public class MainCategoryActivity extends AppCompatActivity {
     RecyclerView listView;
     TextView mainCatgName;
     RecyclerView CategryRV;
+
     CategroiesAdapter mCategroiesAdapter, mSubCatrgriesAdapter;
     ArrayList<CategoryModel> categoryModels, SubSubcatgryModel;
     ProgressDialog pd;
@@ -84,6 +85,8 @@ public class MainCategoryActivity extends AppCompatActivity {
             public void setOnItemClick(int position) {
                 Intent i = new Intent(getApplicationContext(), SubCatrgriesActivity.class);
                 i.putExtra(Constants.SubCategorieNumb, SubSubcatgryModel.get(position).getId());
+                Hawk.put(Constants.Name_name,SubSubcatgryModel.get(position).getName());
+
                 startActivity(i);
 
 

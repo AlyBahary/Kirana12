@@ -164,7 +164,8 @@ public class ItemDescriptionActivity extends AppCompatActivity {
                 productModel = model.getProduct();
                 if (model.getProduct() != null) {
                     pd.dismiss();
-                    Log.d("TTTT", "onResponse: " + model.getProduct().getName() + "------" + model.getProduct().getRating());
+                    Log.d("TTTT", "onResponse: " +
+                            model.getProduct().getName() + "------" + model.getProduct().getRating());
                     Des.setText("" + model.getProduct().getFullDescription());
                     Speci.setText("" + model.getProduct().getManufacturer().getName());
                     Hawk.put(Constants.Specific_Item_Model, model);
@@ -178,8 +179,8 @@ public class ItemDescriptionActivity extends AppCompatActivity {
                     }
                     scaleRatingBar.setRating(Float.parseFloat(model.getProduct().getRating()));
                     itemdesName.setText(model.getProduct().getName());
-                    itemdesnewprice.setText(model.getProduct().getPrice());
-                    itemdesoldprice.setText(model.getProduct().getOldPrice());
+                    itemdesnewprice.setText(model.getProduct().getPrice().substring(0,model.getProduct().getPrice().length()-2)+ " ₹");
+                    itemdesoldprice.setText(model.getProduct().getOldPrice().substring(0,model.getProduct().getPrice().length()-2)+ " ₹");
                     setSliderViews(model.getProduct().getImages());
                 } else {
 
@@ -188,6 +189,7 @@ public class ItemDescriptionActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SpecificItemExampleModel> call, Throwable t) {
+                Log.d("TTTTT", "onFailure: "+t.getMessage());
                 pd.dismiss();
                 View parentLayout = findViewById(android.R.id.content);
                 Snackbar.make(parentLayout, "Please Check your internet Connection", Snackbar.LENGTH_LONG)

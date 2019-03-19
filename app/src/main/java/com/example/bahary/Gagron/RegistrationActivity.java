@@ -279,9 +279,8 @@ public class RegistrationActivity extends AppCompatActivity implements DatePicke
                     Snackbar.make(parentLayout, "Please Select your Country", Snackbar.LENGTH_LONG)
                             .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))
                             .show();
-                } else if (BD.equals("")) {
+                } else if (BD.getText().toString().trim().equals("")) {
                     pd.dismiss();
-
                     View parentLayout = findViewById(android.R.id.content);
                     Snackbar.make(parentLayout, "Please Select your Birthdate", Snackbar.LENGTH_LONG)
                             .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))

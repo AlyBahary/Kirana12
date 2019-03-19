@@ -51,7 +51,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         holder.Description.setText(ordermodel.getName());
         holder.Quantity.setText(ordermodel.getQuantity());
 //        holder.oldprice.setVisibility(View.GONE);
-        holder.newprice.setText(ordermodel.getPrice() +" ₹");
+        holder.newprice.setText(ordermodel.getPrice().substring(0,ordermodel.getPrice().length()-2) +" ₹");
         Picasso.get().load(ordermodel.getImage()).placeholder(R.drawable.lemon1).fit().into(holder.Img);
         // holder.Img.setVisibility(View.GONE);
         holder.Add.setText("Delete");
